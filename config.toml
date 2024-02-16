@@ -27,7 +27,7 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
 [Params.logo]
   # image = ""
   title = "Eric Ngigi"
-  subtitle = "Linux is Everything" # Logo subtitle
+  subtitle = "Leading with Innovation" # Logo subtitle
 
 [Params.sidebar]
   home = "right"   # Configure layout for home page
