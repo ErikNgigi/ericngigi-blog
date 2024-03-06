@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=3001&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Arch Linux Window Manager Install - Eric Ngigi</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Hello everyone, This is my guide for installing minimal Arch Linux with a Windows Desktop Environment. In this guide we will go step by step on how I install my Arch System and set everything up from scratch for a stable operating system.
+">
+		<meta property="og:title" content="Arch Linux Window Manager Install" />
+<meta property="og:description" content="Hello everyone, This is my guide for installing minimal Arch Linux with a Windows Desktop Environment. In this guide we will go step by step on how I install my Arch System and set everything up from scratch for a stable operating system.
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//localhost:3001/post/arch-bspwm-install/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-01-31T21:00:00+00:00" />
+<meta property="article:modified_time" content="2024-01-31T21:00:00+00:00" />
+
+
+		<meta itemprop="name" content="Arch Linux Window Manager Install">
+<meta itemprop="description" content="Hello everyone, This is my guide for installing minimal Arch Linux with a Windows Desktop Environment. In this guide we will go step by step on how I install my Arch System and set everything up from scratch for a stable operating system.
+"><meta itemprop="datePublished" content="2024-01-31T21:00:00+00:00" />
+<meta itemprop="dateModified" content="2024-01-31T21:00:00+00:00" />
+<meta itemprop="wordCount" content="1631">
+<meta itemprop="keywords" content="Kernel Development,Linux," />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Eric Ngigi" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Eric Ngigi</div>
+					<div class="logo__tagline">Leading with Innovation</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Arch Linux Window Manager Install</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-01-31T21:00:00Z">January 31, 2024</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/installation/" rel="category">Installation</a>
+	</span>
+</div></div>
+		</header>
+		
+	<figure class="post__thumbnail thumbnail">
+		
+		<img class="thumbnail__image" src="/img/arch-01.png" alt="Arch Linux Window Manager Install">
+		
+	</figure><div class="content post__content clearfix">
+			<p>This is my guide for installing minimal Arch Linux with a Windows Desktop Environment. In this guide we will go step by step on how I install my Arch System and set everything up from scratch for a stable operating system.</p>
+<p><strong>(Works with Arch ISO Image build as of: 2024.02.01)</strong></p>
+<h1 id="arch-linux-with-bspwm-window-manager-installation-guide-uefi--mbr">Arch Linux with BSPWM Window Manager Installation Guide (UEFI &amp; MBR)</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><strong><a href="#lets-begin">Let&rsquo;s Begin</a></strong></li>
+<li><strong><a href="#preparing-the-disk-for-system">Disk Partitioning</a></strong>
+<ul>
+<li><a href="#for-uefi-system">UEFI System</a></li>
+<li><a href="#for-mbr-system">MBR System</a></li>
+</ul>
+</li>
+<li><strong><a href="#base-system-installation">Base System Installation</a></strong>
+<ul>
+<li><a href="#update-mirrors-using-reflector">Update Mirrors</a></li>
+<li><a href="https://github.com/XxAcielxX/arch-plasma-install#install-base-system">Base System</a></li>
+<li><a href="#generate-fstab">Generate fstab</a></li>
+</ul>
+</li>
+<li><strong><a href="#chroot">Chroot</a></strong>
+<ul>
+<li><a href="#create-swapfile-uefi-only">Swapfile (UEFI only)</a></li>
+<li><a href="#set-time--date">Date &amp; Time</a></li>
+<li><a href="#set-language">Language</a></li>
+<li><a href="#set-hostname">Hostname &amp; Hosts</a></li>
+<li><a href="#install--enable-networkmanager">Network Manager</a></li>
+<li><a href="#set-root-password">ROOT Password</a></li>
+<li><a href="#install-grub-bootloader">GRUB Bootloader</a>
+<ul>
+<li><a href="#for-uefi-system-1">UEFI System</a></li>
+<li><a href="#for-mbr-system-1">MBR System</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong><a href="#now-boot-into-your-freshly-installed-arch-system">Boot Freshly Installed System</a></strong>
+<ul>
+<li><a href="#add-new-user">Add User</a></li>
+<li><a href="#allow-wheel-group-to-use-sudo-commands">Sudo Command</a></li>
+</ul>
+</li>
+<li><strong><a href="#login-as-user">User Login</a></strong>
+<ul>
+<li><a href="#xorg--gpu-drivers">Display Server &amp; GPU Drivers</a></li>
+<li><a href="#enable-multilib-repo-optional">Multilib Repository (32bit)</a></li>
+<li><a href="#install--enable-sddm">Display Manager (SDDM)</a></li>
+<li><a href="#kde-plasma--applications">Desktop Environment (KDE Plasma)</a></li>
+<li><a href="#audio-utilities--bluetooth">Audio Utilities &amp; Bluetooth</a></li>
+<li><a href="https://#my-required-applications">Misc Applications</a></li>
+</ul>
+</li>
+<li><strong><a href="#the-conclusion">The Conclusion</a></strong></li>
+<li><strong><a href="#extras-optional">Extras (optional)</a></strong>
+<ul>
+<li><a href="#install-yay">Yay</a></li>
+<li><a href="#install-zsh">Zsh</a></li>
+<li><a href="#changing-your-shell">Change SHELL</a></li>
+<li><a href="#pipewire">PipeWire</a></li>
+<li><a href="#easyeffects">EasyEffects</a></li>
+<li><a href="#clamav">Clam AntiVirus</a></li>
+<li><a href="#printer-service">Printer Service</a></li>
+</ul>
+</li>
+<li><strong><a href="#theming--customisations">Theming &amp; Customisations</a></strong>
+<ul>
+<li><a href="#install-oh-my-zsh">Oh My Zsh &amp; Powerlevel10k Theme</a></li>
+<li><a href="#kvantum-manager">Kvantum Manager</a></li>
+</ul>
+</li>
+<li><strong><a href="maintenance-performance-tuning--monitoring">Maintenance, Performance Tuning &amp; Monitoring</a></strong>
+<ul>
+<li><a href="#paccache">Paccache</a></li>
+<li><a href="#install-cockpit">Cockpit</a></li>
+</ul>
+</li>
+<li><strong><a href="#changelog">Changelog</a></strong></li>
+</ul>
+<h2 id="lets-begin">Let&rsquo;s begin</h2>
+<ul>
+<li>Grab the latest built ISO Image from <strong><a href="https://www.archlinux.org/download/">Arch Linux Download</a></strong> and write it to an empty USB Stick.</li>
+<li>After the image is done writing, it&rsquo;s time to boot into the Arch Live Environment. First thing you do is:</li>
+</ul>
+<h3 id="load-keymaps-for-non-us-eng-keyboard-users-only">Load Keymaps (for non US ENG Keyboard Users only)</h3>
+<p>For a list of all the available keymaps, use the command:</p>
+<pre tabindex="0"><code>localectl list-keymaps
+</code></pre><p>To search for a keymap, use the following command, replacing <code>[search_term]</code> with the code for your language, country, or layout:</p>
+<pre tabindex="0"><code>localectl list-keymaps | grep -i [search_term]
+</code></pre><h3 id="now-loadkeys">Now Loadkeys</h3>
+<pre tabindex="0"><code>loadkeys [keymap]
+</code></pre><h3 id="check-for-internet-connectivity">Check for Internet Connectivity</h3>
+<pre tabindex="0"><code>ping -c 4 google.com
+</code></pre><ul>
+<li>If you are connected through Ethernet, then your Internet will be working out of the box.</li>
+<li>If you are using Wi-Fi, then use <code>wifi-menu</code> to connect to your local network.</li>
+<li>If this step is successful then we will head to next one.</li>
+</ul>
+<h3 id="update-system-clock">Update system clock</h3>
+<pre tabindex="0"><code>timedatectl set-ntp true
+</code></pre><!-- raw HTML omitted -->
+<h2 id="preparing-the-disk-for-system">Preparing the Disk for System</h2>
+<blockquote>
+<p>:warning: Be extremely careful when managing your disks, incase you delete your precious data then DON&rsquo;T blame me.Disk partitioning type (use UEFI or MBR, go according to your system).</p>
+</blockquote>
+<h2 id="for-uefi-system">For UEFI System</h2>
+<h3 id="disk-partitioning-uefi">Disk Partitioning (UEFI)</h3>
+<p>We are going to make two partitions on our HDD, <code>EFI BOOT &amp; ROOT</code> using <code>gdisk</code>.</p>
+<ul>
+<li>If you have a brand new HDD or if no partition table is found, then create GPT Partition Table by pressing <code>g</code>.</li>
+</ul>
+<pre tabindex="0"><code>gdisk /dev/[disk name]
+</code></pre><ul>
+<li>[disk name] = device to partition, find yours by running <code>lsblk</code>.</li>
+<li>We will be using one partition for our <code>/</code>, <code>/boot</code> &amp; <code>/home</code>.</li>
+</ul>
+<pre tabindex="0"><code>n = New Partition
+simply press enter = 1st Partition
+simply press enter = As First Sector
++512M = As Last sector (BOOT Partition Size)
+ef00 = EFI Partition Type
+
+n = New Partition again
+simply press enter = 2nd Partition
+simply press enter = As First Sector
+simply press enter = As Last sector [ROOT Partition Size (using the remaining disk space left)]
+8300 or simply press enter = EXT4 ROOT Partition Type
+
+w = write &amp; exit
+</code></pre><h3 id="format-partitions-uefi">Format Partitions (UEFI)</h3>
+<pre tabindex="0"><code>mkfs.fat -F32 /dev/[efi partition name]
+mkfs.ext4 /dev/[root partiton name]
+</code></pre><h3 id="mount-partitions-uefi">Mount Partitions (UEFI)</h3>
+<pre tabindex="0"><code>mount /dev/[root partition name] /mnt
+mkdir /mnt/boot/efi
+mount /dev/[efi partition name] /mnt/boot/efi
+</code></pre><h2 id="for-mbr-system">For MBR System</h2>
+<h3 id="disk-partitioning-mbr">Disk Partitioning (MBR)</h3>
+<p>We are going to make two partitions on our HDD, <code>SWAP &amp; ROOT</code> using <code>cfdisk</code>.</p>
+<ul>
+<li>If you have a brand new HDD or if no partition table is found, then create MSDos Partition Table by selecting <code>msdos</code>.</li>
+</ul>
+<pre tabindex="0"><code>cfdisk /dev/[disk name]
+</code></pre><ul>
+<li>[disk name] = device to partition, find yours by running <code>lsblk</code>.</li>
+<li>SWAP Partition should double the size of RAM available in your system. Not applicable on 16GB or more RAM.</li>
+<li>We will be using one partition for our <code>/</code>, <code>/boot</code> &amp; <code>/home</code>.</li>
+</ul>
+<h3 id="format-the-partition-make-swap--mount-root-mbr">Format the Partition, Make SWAP &amp; Mount ROOT (MBR)</h3>
+<h4 id="format-root-partition-as-ext4">Format ROOT Partition as EXT4</h4>
+<pre tabindex="0"><code>mkfs.ext4 /dev/[root partition name]
+</code></pre><h4 id="make--turn-swap-partition-on-mbr">Make &amp; Turn SWAP Partition on (MBR)</h4>
+<pre tabindex="0"><code>mkswap /dev/[swap partition name]
+swapon /dev/[swap partition name]
+</code></pre><h4 id="mount-root-partition-mbr">Mount ROOT Partition (MBR)</h4>
+<pre tabindex="0"><code>mount /dev/[root partition name] /mnt
+</code></pre><!-- raw HTML omitted -->
+<h2 id="base-system-installation">Base System Installation</h2>
+<h3 id="update-mirrors-using-reflector">Update Mirrors using Reflector</h3>
+<pre tabindex="0"><code>reflector -c County1 -c Country2 -a 12 -p https --sort rate --save /etc/pacman.d/mirrorlist
+</code></pre><p>Replace <code>Country1</code> &amp; <code>Country2</code> with countries near to you or with the one you&rsquo;re living in. Refer to <strong><a href="https://wiki.archlinux.org/index.php/reflector">Reflector</a></strong> for more info.</p>
+<h3 id="install-base-system">Install base system</h3>
+<pre tabindex="0"><code>pacstrap /mnt base base-devel linux linux-firmware linux-headers nano intel-ucode reflector mtools dosfstools
+</code></pre><ul>
+<li>Replace <code>linux</code> with <em>linux-hardened</em>, <em>linux-lts</em> or <em>linux-zen</em> to install the kernel of your choice.</li>
+<li>Replace <code>linux-headers</code> with Kernel type type of your choice respectively (e.g if you installed <code>linux-zen</code> then you will need <code>linux-zen-headers</code>).</li>
+<li>Replace <code>nano</code> with editor of your choice (i.e <code>vim</code> or <code>vi</code>).</li>
+<li>Replace <code>intel-ucode</code> with <code>amd-ucode</code> if you are using an AMD Processor.</li>
+</ul>
+<h3 id="generate-fstab">Generate fstab</h3>
+<p>(use <code>-U</code> or <code>-L</code> to define by <a href="https://wiki.archlinux.org/index.php/UUID">UUID</a> or labels, respectively)</p>
+<pre tabindex="0"><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+</code></pre><p>Check the resulting <code>/mnt/etc/fstab</code> file, and edit it in case of errors. <!-- raw HTML omitted --></p>
+<h2 id="chroot">Chroot</h2>
+<pre tabindex="0"><code>arch-chroot /mnt
+</code></pre><h3 id="create-swapfile-uefi-only">Create Swapfile (UEFI only)</h3>
+<p>Replace the below 4096 in <code>count=4096</code> with double the amount of RAM installed your system. Not applicable on 16GB or more RAM.</p>
+<pre tabindex="0"><code>dd if=/dev/zero of=/swapfile bs=1M count=4096 status=progress
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+</code></pre><h3 id="add-swapfile-entery-in-your-etcfstab-file-uefi-only">Add Swapfile entery in your <code>/etc/fstab</code> file (UEFI only)</h3>
+<pre tabindex="0"><code>/swapfile none swap defaults 0 0
+</code></pre><p>Insert the above line at the bottom of <code>/etc/fstab</code>.</p>
+<h3 id="set-time--date">Set Time &amp; Date</h3>
+<pre tabindex="0"><code>ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
+hwclock --systohc
+</code></pre><p>Replace <code>Region</code> &amp; <code>City</code> according to your Time zone. Refer to <strong><a href="https://wiki.archlinux.org/index.php/installation_guide#Time_zone">Time zone</a></strong> more info.</p>
+<h2 id="set-language">Set Language</h2>
+<p>We will use <code>en_US.UTF-8</code> here but, if you want to set your language, replace <code>en_US.UTF-8</code> with yours in all below instances.</p>
+<h4 id="edit-localegen">Edit locale.gen</h4>
+<pre tabindex="0"><code>nano /etc/locale.gen
+</code></pre><p>Uncomment the below line</p>
+<pre tabindex="0"><code>#en_US.UTF-8 UTF-8
+</code></pre><p>save &amp; exit.</p>
+<h3 id="generate-locale">Generate Locale</h3>
+<pre tabindex="0"><code>locale-gen
+</code></pre><h3 id="add-lang-to-localeconf">Add LANG to locale.conf</h3>
+<pre tabindex="0"><code>echo LANG=en_US.UTF-8 &gt; /etc/locale.conf
+</code></pre><h3 id="add-keymaps-to-vconsole">Add Keymaps to vconsole</h3>
+<p>For keyboard users with non US Eng only. Replace <code>[keymap]</code> with yours.</p>
+<pre tabindex="0"><code>echo &#34;KEYMAP=[keymap]&#34; &gt; /etc/vconsole.conf
+</code></pre><h2 id="set-hostname">Set Hostname</h2>
+<pre tabindex="0"><code>echo arch &gt; /etc/hostname
+</code></pre><p>Replace <code>arch</code> with hostname of your choice.</p>
+<h3 id="set-hosts">Set Hosts</h3>
+<pre tabindex="0"><code>nano /etc/hosts
+</code></pre><h4 id="add-these-lines-to-it">add these lines to it</h4>
+<pre tabindex="0"><code>127.0.0.1    localhost
+::1          localhost
+127.0.1.1    arch.localdomain arch
+</code></pre><p>Replace <code>arch</code> with hostname of your choice.
+save &amp; exit.</p>
+<h3 id="install--enable-networkmanager">Install &amp; Enable NetworkManager</h3>
+<pre tabindex="0"><code>pacman -S networkmanager
+systemctl enable NetworkManager
+</code></pre><h3 id="set-root-password">Set ROOT Password</h3>
+<pre tabindex="0"><code>passwd
+</code></pre><h3 id="install-grub-bootloader">Install GRUB Bootloader</h3>
+<pre tabindex="0"><code>pacman -S grub
+</code></pre><h3 id="install-efi-boot-manager-uefi">Install EFI Boot manager (UEFI)</h3>
+<pre tabindex="0"><code>pacman -S efibootmgr
+</code></pre><h4 id="for-uefi-system-1">For UEFI System</h4>
+<pre tabindex="0"><code>grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+</code></pre><h4 id="for-mbr-system-1">For MBR System</h4>
+<pre tabindex="0"><code>grub-install --target=i386-pc /dev/[disk name]
+</code></pre><h3 id="create-grub-configuration-file">Create Grub configuration file</h3>
+<pre tabindex="0"><code>grub-mkconfig -o /boot/grub/grub.cfg
+</code></pre><h3 id="final-step">Final Step</h3>
+<pre tabindex="0"><code>exit
+umount -a
+reboot
+</code></pre><!-- raw HTML omitted -->
+<h2 id="now-boot-into-your-freshly-installed-arch-system">Now boot into your freshly installed Arch system</h2>
+<h3 id="login-as-root">Login as ROOT</h3>
+<h3 id="add-new-user">Add new User</h3>
+<pre tabindex="0"><code>useradd -mG wheel [username]
+</code></pre><p>Replace <code>[username]</code> with your username of choice.</p>
+<h3 id="set-user-password">Set User Password</h3>
+<pre tabindex="0"><code>passwd [username]
+</code></pre><h3 id="allow-wheel-group-to-use-sudo-commands">Allow Wheel Group to use Sudo Commands</h3>
+<pre tabindex="0"><code>EDITOR=nano visudo
+</code></pre><h4 id="find-and-uncomment-the-below-line">Find and uncomment the below line</h4>
+<pre tabindex="0"><code>#%wheel ALL=(ALL) ALL
+</code></pre><p>save &amp; exit.</p>
+<h3 id="logout-root">Logout ROOT</h3>
+<pre tabindex="0"><code>exit
+</code></pre><h2 id="login-as-user">Login as USER</h2>
+<h3 id="check-for-updates">Check for updates</h3>
+<pre tabindex="0"><code>sudo pacman -Syu
+</code></pre><h3 id="xorg--gpu-drivers">Xorg &amp; GPU Drivers</h3>
+<pre tabindex="0"><code>sudo pacman -S xorg [xf86-video-your gpu type]
+</code></pre><ul>
+<li>For Nvidia GPUs, type <code>nvidia</code> &amp; <code>nvidia-settings</code>. For more info/old GPUs, refer to <a href="https://wiki.archlinux.org/index.php/NVIDIA">Arch Wiki - Nvidia</a>.</li>
+<li>For newer AMD GPUs, type <code>xf86-video-amdgpu</code>.</li>
+<li>For legacy Radeon GPUs like HD 7xxx Series &amp; below, type <code>xf86-video-ati</code>.</li>
+<li>For dedicated Intel Graphics, type <code>xf86-video-intel</code>.</li>
+</ul>
+<h3 id="enable-multilib-repo-optional">Enable Multilib Repo (optional)</h3>
+<p>multilib contains 32-bit software and libraries that can be used to run and build 32-bit applications on 64-bit installs (e.g. <a href="https://www.winehq.org/">Wine</a>, <a href="https://store.steampowered.com/">Steam</a>, etc).</p>
+<p>Edit <code>/etc/pacman.conf</code> &amp; uncomment the below two lines.</p>
+<pre tabindex="0"><code>#[multilib]
+#Include = /etc/pacman.d/mirrorlist
+</code></pre><h4 id="mesa-libraries-32bit">MESA Libraries (32bit)</h4>
+<p>This package is required by Steam if you play games using Vulkan Backend.</p>
+<pre tabindex="0"><code>sudo pacman -S lib32-mesa
+</code></pre><h3 id="kde-plasma--applications">KDE Plasma &amp; Applications</h3>
+<pre tabindex="0"><code>sudo pacman -S alacritty aria2 bat bat-extras bspwm btrfs-progs evince eza feh ffmpeg firefox-developer-edition flameshot font-manager gimp github-cli gpick htop jq lazygit lxappearance mesa-utils mesa-vdpau mpv ncdu neovim nnn noto-fonts noto-fonts-cjk noto-fonts-extra npm opendoas pass pavucontrol pulseaudio-alsa python-pip python-pipx renameutils reflector ripgrep rofi spotify-launcher stow strawberry sxhkd sxiv terraform thunar tipp10 tmux transmission-cli trash-cli unrar unzip vim wget xorg xorg-xinit zip zsh xf86-video-amdgpu polybar libva-mesa-driver libva-vdpau-driver libva-utils pacman-contrib go  
+</code></pre><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="enable-openssh-daemon">Enable OpenSSH daemon</h3>
+<pre tabindex="0"><code>sudo systemctl enable sshd.service
+</code></pre><h3 id="final-reboot">Final Reboot</h3>
+<pre tabindex="0"><code>reboot
+</code></pre><!-- raw HTML omitted -->
+<h3 id="the-conclusion">The Conclusion</h3>
+<p>Now everything is installed and after the final <code>reboot</code>, you will land in you GUI Login Screen ready to use your system. You can also do some extra steps mentioned below to further improve your experience. I&rsquo;ll recommend you to install <code>yay</code> &amp; <code>paccache</code>.</p>
+<ul>
+<li>Yay will provide your packages from AUR (Arch User Repository), which are not available in the Official Repo.</li>
+<li>Paccache can be used clean pacman cached packages either manually or in an automated way.</li>
+</ul>
+<h2 id="extras-optional">Extras (optional)</h2>
+<h3 id="install-yayhttpsgithubcomjgueryay">Install <a href="https://github.com/Jguer/yay">Yay</a></h3>
+<p>Yet Another Yogurt - An AUR Helper.</p>
+<pre tabindex="0"><code>git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+</code></pre><h3 id="install-zshhttpswikiarchlinuxorgindexphpzsh">Install <a href="https://wiki.archlinux.org/index.php/zsh/">Zsh</a></h3>
+<p>Zsh is a powerful shell that operates as both an interactive shell and as a scripting language interpreter.</p>
+<pre tabindex="0"><code>sudo pacman -S zsh zsh-completions
+</code></pre><p>Read <em><a href="#install-oh-my-zsh">here</a></em> for customisation &amp; theming for Zsh. Read below how to change your SHELL.</p>
+<h3 id="changing-your-shell">Changing your SHELL</h3>
+<p>First check your current SHELL by running:</p>
+<pre tabindex="0"><code>echo $SHELL
+</code></pre><h4 id="to-get-list-of-all-availableinstalled-shells">To get list of all available/installed SHELLs:</h4>
+<pre tabindex="0"><code>chsh -l
+</code></pre><h3 id="set-zsh-as-our-shell">Set Zsh as our SHELL</h3>
+<p>For an example, we will set Zsh as default SHELL which we installed in the last step:</p>
+<pre tabindex="0"><code>chsh -s /usr/bin/zsh
+</code></pre><p>For the changes to apply, you will have Logout and Log back in or better do <code>reboot</code>.</p>
+<h2 id="pipewire">PipeWire</h2>
+<p><a href="https://wiki.archlinux.org/title/PipeWire">PipeWire</a> is a new low-level multimedia framework. It aims to offer capture and playback for both audio and video with minimal latency and support for PulseAudio, JACK, ALSA and GStreamer-based applications.</p>
+<h4 id="install">Install</h4>
+<pre tabindex="0"><code>sudo pacman -S pipewire
+</code></pre><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="maintenance-performance-tuning--monitoring">Maintenance, Performance Tuning &amp; Monitoring</h2>
+<h3 id="paccache">Paccache</h3>
+<p>Pacman Cache Cleaner.</p>
+<p>Install</p>
+<pre tabindex="0"><code>sudo pacman -S pacman-contrib
+</code></pre><p>To manually clean pacman cache, run</p>
+<pre tabindex="0"><code>sudo paccache -rk
+</code></pre><p>Where, <em>k</em> indicates to keep &ldquo;num&rdquo; of each package in the cache.</p>
+<h4 id="to-automate-paccache-process">To automate paccache process</h4>
+<p>Create a file in <code>/etc/pacman.d/hooks</code></p>
+<pre tabindex="0"><code>sudo mkdir /etc/pacman.d/hooks
+sudo nano /etc/pacman.d/hooks/clean_cache.hook
+</code></pre><p>Add the following lines in it</p>
+<pre tabindex="0"><code>[Trigger]
+Operation = Upgrade
+Operation = Install
+Operation = Remove
+Type = Package
+Target = *
+[Action]
+Description = Cleaning pacman cache...
+When = PostTransaction
+Exec = /usr/bin/paccache -rk
+</code></pre><p>save &amp; exit.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/kernel-development/" rel="tag">Kernel Development</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/linux/" rel="tag">Linux</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<p class="authorbox__warning">
+		<strong>WARNING:</strong> Authorbox is activated, but [Author] parameters are not specified.
+	</p>
+</div>
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="//localhost:3001/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/arch-bspwm-install/">Arch Linux Window Manager Install</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/installation/">Installation</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/kernel-development/" title="Kernel Development">Kernel Development</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 Eric Ngigi.
+			<span class="footer__copyright-credits"></span>
+			
+		</div>
+	</div>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
