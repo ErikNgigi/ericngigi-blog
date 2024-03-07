@@ -109,8 +109,8 @@ Please note that nested menus (submenus) are not supported in Mainroad Dark Them
 
 ## Contributing
 
-Found a bug or have a feature idea? Feel free to open an issue or submit a pull request. Please follow the contributing guidelines.
+Found a bug or have a feature idea? Feel free to open an issue or submit a pull [pull request](https://github.com/ErikNgigi/EricNgigi/pulls). Please follow the [contributing guide](contributing.md).
 
 ## License
 
-This theme is released under the GPLv2 license. Feel free to use and modify it according to your needs.
+This theme is released under the [GPLv2 license](https://github.com/ErikNgigi/EricNgigi/blob/master/LICENSE. Feel free to use and modify it according to your needs.
