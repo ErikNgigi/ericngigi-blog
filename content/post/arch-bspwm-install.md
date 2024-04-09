@@ -1,5 +1,5 @@
 ---
-thumbnail: img/arch-01.png
+thumbnail: img/arch-02.png
 title: Arch Linux Window Manager Install
 description: >
   Hello everyone, This is my guide for installing minimal Arch Linux with a
@@ -7,7 +7,7 @@ description: >
   install my Arch System and set everything up from scratch for a stable
   operating system.
 date: 2024-01-31T21:00:00.000Z
-bannerImage: /img/arch-01.png
+bannerImage: img/arch-02.png
 tags:
   - Kernel Development
   - Linux
@@ -25,7 +25,6 @@ This is my guide for installing minimal Arch Linux with a Windows Desktop Enviro
 
 ## Table of Contents
 
-* **[Let's Begin](#lets-begin)**
 * **[Disk Partitioning](#preparing-the-disk-for-system)**
   * [UEFI System](#for-uefi-system)
   * [MBR System](#for-mbr-system)
@@ -58,22 +57,9 @@ This is my guide for installing minimal Arch Linux with a Windows Desktop Enviro
   * [Yay](#install-yay)
   * [Zsh](#install-zsh)
   * [Change SHELL](#changing-your-shell)
-  * [PipeWire](#pipewire)
-  * [EasyEffects](#easyeffects)
-  * [Clam AntiVirus](#clamav)
-  * [Printer Service](#printer-service)
 * **[Theming & Customisations](#theming--customisations)**
-  * [Oh My Zsh & Powerlevel10k Theme](#install-oh-my-zsh)
-  * [Kvantum Manager](#kvantum-manager)
 * **[Maintenance, Performance Tuning & Monitoring](maintenance-performance-tuning--monitoring)**
-  * [Paccache](#paccache)
-  * [Cockpit](#install-cockpit)
 * **[Changelog](#changelog)**
-
-## Let's begin
-
-* Grab the latest built ISO Image from **[Arch Linux Download](https://www.archlinux.org/download/)** and write it to an empty USB Stick.
-* After the image is done writing, it's time to boot into the Arch Live Environment. First thing you do is:
 
 ### Load Keymaps (for non US ENG Keyboard Users only)
 
@@ -609,243 +595,5 @@ chsh -s /usr/bin/zsh
 ```
 
 For the changes to apply, you will have Logout and Log back in or better do `reboot`.
-
-## PipeWire
-
-[PipeWire](https://wiki.archlinux.org/title/PipeWire) is a new low-level multimedia framework. It aims to offer capture and playback for both audio and video with minimal latency and support for PulseAudio, JACK, ALSA and GStreamer-based applications.
-
-#### Install
-
-```
-sudo pacman -S pipewire
-```
-
-<!-- ## EasyEffects -->
-
-<!-- [EasyEffects](https://wiki.archlinux.org/title/PipeWire#EasyEffects) (former PulseEffects) is a GTK utility which provides a large array of audio effects and filters to individual application output streams and microphone input streams. Notable effects include an input/output equalizer, output loudness equalization and bass enhancement, and input de-esser and noise reduction plug-in. -->
-
-<!-- Install -->
-
-<!-- ``` -->
-
-<!-- sudo pacman -S easyeffects -->
-
-<!-- or -->
-
-<!-- yay -S easyeffects-git -->
-
-<!-- ``` -->
-
-<!-- > This will also install pipewire-pulse and replace PulseAudio with PipeWire. -->
-
-<!-- ## ClamAV -->
-
-<!-- [Clam AntiVirus](https://wiki.archlinux.org/index.php/ClamAV) is an open source (GPL) anti-virus toolkit for UNIX. It provides a number of utilities including a flexible and scalable multi-threaded daemon, a command line scanner and advanced tool for automatic database updates. -->
-
-<!-- #### 1. Install -->
-
-<!-- ``` -->
-
-<!-- sudo pacman -S clamav -->
-
-<!-- ``` -->
-
-<!-- #### 2. Update Signatures/Database (must do) -->
-
-<!-- ``` -->
-
-<!-- sudo freshclam -->
-
-<!-- ``` -->
-
-<!-- #### 3. Enable & start services -->
-
-<!-- ``` -->
-
-<!-- sudo systemctl enable --now clamav-freshclam.service -->
-
-<!-- sudo systemctl enable --now clamav-daemon.service -->
-
-<!-- ``` -->
-
-<!-- #### 4a. ClamTK (optional) -->
-
-<!-- GUI for ClamAV -->
-
-<!-- ``` -->
-
-<!-- sudo pacman -S clamtk -->
-
-<!-- ``` -->
-
-<!-- #### 4b. KDE Dolphin File Manager Plugin (optional) -->
-
-<!-- Download the latest `master zip` from [ClanTK-KDE Gitlab](https://gitlab.com/dave_m/clamtk-kde) & extract it your `~/Downloads` folder. Now open a terminal from within the extracted folder & run: -->
-
-<!-- ``` -->
-
-<!-- sudo cp clamtk-kde.desktop /usr/share/kservices5/ServiceMenus/ -->
-
-<!-- ``` -->
-
-<!-- ### Printer Service -->
-
-<!-- ``` -->
-
-<!-- sudo pacman -S cups -->
-
-<!-- ``` -->
-
-<!-- #### Enable CUPS (Printer) Service -->
-
-<!-- ``` -->
-
-<!-- sudo systemctl enable --now cups.service -->
-
-<!-- ``` -->
-
-</br>
-
-<!-- ## Theming & Customisations -->
-
-<!-- ### Install [Oh My Zsh](https://ohmyz.sh/) -->
-
-<!-- Oh My Zsh is an open source, community-driven framework for managing your Zsh configuration. -->
-
-<!-- ``` -->
-
-<!-- sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)" -->
-
-<!-- ``` -->
-
-<!-- My favourite theme is Powerlevel10k (follow below for installation). -->
-
-<!-- - You can visit [here](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes) to download theme of your choice. -->
-
-<!-- ### Get [Powerlevel10k](https://github.com/romkatv/powerlevel10k/) Theme for Oh My Zsh -->
-
-<!-- This is the theme I'll install to spice up my terminal experience. -->
-
-<!-- ``` -->
-
-<!-- git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k -->
-
-<!-- ``` -->
-
-<!-- #### Get the recommended fonts -->
-
-<!-- We will be using ***Yay*** to install the below two packages as one of them is only available from AUR. -->
-
-<!-- ``` -->
-
-<!-- yay -S ttf-dejavu ttf-meslo-nerd-font-powerlevel10k -->
-
-<!-- ``` -->
-
-<!-- Also set your Konsole Terminal font to `MesloGS-NF-Regular`. -->
-
-<!-- #### Set Powerlevel10k as your Zsh Theme -->
-
-<!-- ``` -->
-
-<!-- nano ~/.zshrc -->
-
-<!-- ``` -->
-
-<!-- Find the line starting with `ZSH_THEME="...."` and replace the theme name so the line should now look like this `ZSH_THEME="powerlevel10k/powerlevel10k"` Now do `source ~/.zshrc`. -->
-
-<!-- #### Configuration -->
-
-<!-- > ***For new users***, on the first run, Powerlevel10k configuration wizard will ask you a few questions and configure your prompt. If it doesn't trigger automatically, type `p10k configure`. Configuration wizard creates `~/.p10k.zsh` based on your preferences. Additional prompt customization can be done by editing this file. It has plenty of comments to help you navigate through configuration options. -->
-
-<!-- ## Kvantum Manager -->
-
-<!-- [Kvantum](https://github.com/tsujan/Kvantum) is a SVG-based theme engine for Qt, tuned to KDE and LXQt, with an emphasis on elegance, usability and practicality. -->
-
-<!-- ### Install through Yay (git version) -->
-
-<!-- ``` -->
-
-<!-- yay -S kvantum-qt5-git -->
-
-<!-- ``` -->
-
-<!-- ***Or*** -->
-
-<!-- ### Install through Pacman -->
-
-<!-- ``` -->
-
-<!-- sudo pacman -S kvantum -->
-
-<!-- ``` -->
-
-</br>
-
-## Maintenance, Performance Tuning & Monitoring
-
-### Paccache
-
-Pacman Cache Cleaner.
-
-Install
-
-```
-sudo pacman -S pacman-contrib
-```
-
-To manually clean pacman cache, run
-
-```
-sudo paccache -rk
-```
-
-Where, *k* indicates to keep "num" of each package in the cache.
-
-#### To automate paccache process
-
-Create a file in `/etc/pacman.d/hooks`
-
-```
-sudo mkdir /etc/pacman.d/hooks
-sudo nano /etc/pacman.d/hooks/clean_cache.hook
-```
-
-Add the following lines in it
-
-```
-[Trigger]
-Operation = Upgrade
-Operation = Install
-Operation = Remove
-Type = Package
-Target = *
-[Action]
-Description = Cleaning pacman cache...
-When = PostTransaction
-Exec = /usr/bin/paccache -rk
-```
-
-save & exit.
-
-<!-- ### Install [Cockpit](https://cockpit-project.org/) -->
-
-<!-- A systemd web based user interface for Linux servers, Workstations and even Desktops. Can be used to monitor your system stats, performance and perform various settings including updating of your system. -->
-
-<!-- ``` -->
-
-<!-- sudo pacman -S cockpit -->
-
-<!-- ``` -->
-
-<!-- ##### Enable Cockpit -->
-
-<!-- ``` -->
-
-<!-- sudo systemctl enable --now cockpit.socket -->
-
-<!-- ``` -->
-
-<!-- Now open your browser and point to it `your-machine-ip:9000` and login with ***root*** to get full access. -->
 
 </br>

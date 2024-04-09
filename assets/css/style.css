@@ -51,8 +51,8 @@ html {
 body {
 	margin: 0;
 	font-family: {{ $fontFamilyPrimary }};
-	font-size: 14px;
-	font-size: .875rem;
+	font-size: 17px;
+	font-size: 1.0625rem;
   color: #EBDBB2;
 	line-height: 1.6;
 	word-wrap: break-word;
@@ -658,7 +658,8 @@ button:not(:-moz-focusring):focus > .menu__btn-title {
 }
 
 .post__thumbnail img {
-	width: 100%;
+	width: auto;
+  border-radius: 10px;
 }
 
 .content a,
