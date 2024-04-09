@@ -1,13 +1,9 @@
 ---
-thumbnail: img/arch-02.png
+thumbnail: img/arch-01.png
 title: Arch Linux Window Manager Install
-description: >
-  Hello everyone, This is my guide for installing minimal Arch Linux with a
-  Windows Desktop Environment. In this guide we will go step by step on how I
-  install my Arch System and set everything up from scratch for a stable
-  operating system.
+description: Hello everyone, This is my guide for installing minimal Arch Linux with a Windows Desktop Environment. In this guide we will go step by step on how I install my Arch System and set everything up from scratch for a stable operating system.
 date: 2024-01-31T21:00:00.000Z
-bannerImage: img/arch-02.png
+bannerImage: img/arch-01.png
 tags:
   - Kernel Development
   - Linux

@@ -28,7 +28,7 @@
 
 # Authorbox
 - id: authorbox_name
-  translation: "About {{ .Name }}"
+  translation: "Written By {{ .Name }}"
 
 # Sidebar
 - id: sidebar_warning
