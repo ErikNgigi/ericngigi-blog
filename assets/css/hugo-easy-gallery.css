@@ -44,10 +44,10 @@ Grid Layout Styles
 /*
 Transition styles
 */
-.gallery.hover-transition figure,
+.gallery.hover-transition figure-gallery,
 .gallery.hover-effect-zoom .img,
-.gallery:not(.caption-effect-appear) figcaption,
-.fancy-figure:not(.caption-effect-appear) figcaption {
+.gallery:not(.caption-effect-appear) figcaption-gallery,
+.fancy-figure:not(.caption-effect-appear) figcaption-gallery {
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
@@ -56,27 +56,27 @@ Transition styles
 /*
 figure styles
 */
-figure {
+figure-gallery {
     position:relative; /* purely to allow absolution positioning of figcaption */
     overflow: hidden;
 }
-.gallery figure {
+.gallery figure-gallery {
     position: absolute;
     left: 5px;
     right: 5px;
     top: 5px;
     bottom: 5px;
 }
-.gallery.hover-effect-grow figure:hover {
+.gallery.hover-effect-grow figure-gallery:hover {
     transform: scale(1.05);
 }
-.gallery.hover-effect-shrink figure:hover {
+.gallery.hover-effect-shrink figure-gallery:hover {
     transform: scale(0.95);
 }
-.gallery.hover-effect-slidedown figure:hover {
+.gallery.hover-effect-slidedown figure-gallery:hover {
     transform: translateY(5px);
 }
-.gallery.hover-effect-slideup figure:hover {
+.gallery.hover-effect-slideup figure-gallery:hover {
     transform: translateY(-5px);
 }
 
@@ -94,13 +94,13 @@ img / a styles
     background-position: 50% 50%;
     background-repeat: no-repeat;
 }
-.gallery.hover-effect-zoom figure:hover .img {
+.gallery.hover-effect-zoom figure-gallery:hover .img {
     transform: scale(1.05);
 }
 .gallery img {
     display: none; /* only show the img if not inside a gallery */
 }
-figure a {
+figure-gallery a {
     position: absolute;
     left: 0;
     right: 0;
@@ -111,8 +111,8 @@ figure a {
 /*
 figcaption styles
 */
-.gallery figcaption,
-.fancy-figure figcaption {
+.gallery figcaption-gallery,
+.fancy-figure figcaption-gallery {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -125,34 +125,34 @@ figcaption styles
     opacity: 1;
     cursor: pointer;
 }
-.gallery.caption-position-none figcaption,
-.fancy-figure.caption-position-none figcaption  {
+.gallery.caption-position-none figcaption-gallery,
+.fancy-figure.caption-position-none figcaption-gallery {
     display: none;
 }
-.gallery.caption-position-center figcaption,
-.fancy-figure.caption-position-center figcaption {
+.gallery.caption-position-center figcaption-gallery,
+.fancy-figure.caption-position-center figcaption-gallery {
     top: 0;
     padding: 40% 5px;
 }
-.gallery.caption-position-bottom figcaption,
-.fancy-figure.caption-position-bottom figcaption {
+.gallery.caption-position-bottom figcaption-gallery,
+.fancy-figure.caption-position-bottom figcaption-gallery {
     padding: 5px;
 }
-.gallery.caption-effect-fade figure:not(:hover) figcaption,
-.gallery.caption-effect-appear figure:not(:hover) figcaption,
-.fancy-figure.caption-effect-fade figure:not(:hover) figcaption,
-.fancy-figure.caption-effect-appear figure:not(:hover) figcaption {
+.gallery.caption-effect-fade figure-gallery:not(:hover) figcaption-gallery,
+.gallery.caption-effect-appear figure-gallery:not(:hover) figcaption-gallery,
+.fancy-figure.caption-effect-fade figure-gallery:not(:hover) figcaption-gallery,
+.fancy-figure.caption-effect-appear figure-gallery:not(:hover) figcaption-gallery {
     background: rgba(0, 0, 0, 0);
     opacity: 0;
 }
-.gallery.caption-effect-slide.caption-position-bottom figure:not(:hover) figcaption,
-.fancy-figure.caption-effect-slide.caption-position-bottom figure:not(:hover) figcaption {
+.gallery.caption-effect-slide.caption-position-bottom figure-gallery:not(:hover) figcaption-gallery,
+.fancy-figure.caption-effect-slide.caption-position-bottom figure-gallery:not(:hover) figcaption-gallery {
     margin-bottom: -100%;
 }
-.gallery.caption-effect-slide.caption-position-center figure:not(:hover) figcaption,
-.fancy-figure.caption-effect-slide.caption-position-center figure:not(:hover) figcaption  {
+.gallery.caption-effect-slide.caption-position-center figure-gallery:not(:hover) figcaption-gallery,
+.fancy-figure.caption-effect-slide.caption-position-center figure-gallery:not(:hover) figcaption-gallery {
     top: 100%;
 }
-figcaption p {
+figcaption-gallery p {
     margin: auto; /* override style in theme */
 }
