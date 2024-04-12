@@ -52,7 +52,7 @@ body {
 	margin: 0;
 	font-family: {{ $fontFamilyPrimary }};
 	font-size: 17px;
-	font-size: 1.0625rem;
+	/* font-size: 1.0625rem; */
   color: #EBDBB2;
 	line-height: 1.6;
 	word-wrap: break-word;
@@ -795,7 +795,7 @@ button:not(:-moz-focusring):focus > .menu__btn-title {
 	margin-bottom: 20px;
 	font-weight: 700;
 	color: #7a8288;
-	background: #fff;
+	background: #1D2021;
 	border-color: #ebebeb;
 	border-style: solid;
 	border-top-width: 1px;

@@ -9,7 +9,7 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
 [Params.author]
   name = "Eric Ngigi"
   bio = "Who Cares"
-  avatar = "img/arch-02.png"
+  avatar = "images/profile/profile-image.png"
 
 [Params]
   description = "Eric" # Description of your site
@@ -23,30 +23,43 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
   post_meta = ["date", "categories"] # Order of post meta information
   mainSections = ["post", "docs"]
   googleFontsLink = "https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700" # Load Google Fonts
+  customCSS = ["css/hugo-easy-gallery.css"] # Include custom CSS files
+  customJS = ["js/load-photoswipe.js"] # Include custom JS files
 
 [Params.logo]
-  image = "img/cloud-image-1.png"
+  image = "images/logo/cloud-logo.png"
   title = "Eric Ngigi"
   subtitle = "Engineered for Efficiency: Cloud Automation Expertise" # Logo subtitle
 
 [Params.sidebar]
-  home = false   # Configure layout for home page
-  list = false   # Configure layout for list pages
+  home = "right" # Configure layout for home page
+  list = "left"  # Configure layout for list pages
   single = false # Configure layout for single pages
   # Enable widgets in given order
-  # widgets = ["search", "recent", "categories", "taglist"]
-  widgets = ["categories", "taglist"]
+  widgets = ["search", "recent", "categories", "taglist", "social", "languages"]
 
-# [Params.widgets]
-#   recent_num = 5 # Set the number of articles in the "Recent articles" widget
-#   tags_counter = false # Enable counter for each tag in "Tags" widget (disabled by default)
+[Params.widgets]
+  recent_num = 5 # Set the number of articles in the "Recent articles" widget
+  categories_counter = false # Enable counter for each category in "Categories" widget
+  tags_counter = false # Enable counter for each tag in "Tags" widget
 
 [Params.style.vars]
   highlightColor = "#E22D30"
   fontFamilyPrimary = "'Nunito Sans', Helvetica, Arial, sans-serif"
   fontFamilySecondary = "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
 
+[Params.thumbnail]
+  visibility = ["list", "post"] # Control thumbnail visibility
+
 [Author] # Used in authorbox
   name = "Eric Ngigi"
   bio = "Eric, a certified AWS Solution Architect, brings 4 years of expertise in cloud and DevOps technologies. Proficient in Linux administration, his mastery lies in Terraform for Infrastructure as Code (IaC) development, enabling scalable cloud deployments. Eric shares his insights and experiences through his blog, [EricNgigi](https://ericngigi.com)."
   avatar = "img/profile-picture.png"
+
+[Params.widgets.social]
+  cached = false # activate cache if true
+  # Enable parts of social widget
+  linkedin = "erik-ngigi"
+  github = "ErikNgigi"
+  email = "ericmosesngigi@gmail.com"
+  youtube = "UCF3GCqR1MYFdf-Jv9srtjDA"

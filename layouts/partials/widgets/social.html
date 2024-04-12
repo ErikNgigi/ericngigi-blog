@@ -10,7 +10,15 @@
 			</a>
 		</div>
 		{{- end }}
-		{{- with .Site.Params.widgets.social.twitter }}
+		{{- with .Site.Params.widgets.social.youtube }}
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="YouTube" rel="noopener noreferrer" href="https://youtube.com/channel/{{ . }}" target="_blank">
+				{{ partial "svg/youtube.svg" (dict "class" "widget-social__link-icon") }}
+				<span>YouTube</span>
+			</a>
+		</div>
+		{{- end }}
+    {{- with .Site.Params.widgets.social.twitter }}
 		<div class="widget-social__item widget__item">
 			<a class="widget-social__link widget__link btn" title="Twitter" rel="noopener noreferrer" href="https://twitter.com/{{ . }}" target="_blank">
 				{{ partial "svg/twitter.svg" (dict "class" "widget-social__link-icon") }}
