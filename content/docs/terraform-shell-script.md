@@ -132,3 +132,5 @@ The Shell Script addresses various challenges encountered when structuring Terra
 3. **Terraform Initialization**: Executing Terraform initialization is a fundamental step in setting up projects. The script offers an option to automate this process, saving developers valuable time and minimizing manual intervention. This automation ensures that projects start with a properly initialized Terraform environment, ready for resource provisioning and management.
 
 4. **Gitignore Initialization**: Version control is paramount in software development, but managing which files to include or exclude can be intricate. The script simplifies this aspect by generating a `.gitignore` file tailored for Terraform projects. This file excludes sensitive or unnecessary files from version control, enhancing project security and maintainability.
+
+{{< glightbox src="/images/articles/aws-vpc-best-practices-1.svg" >}}
