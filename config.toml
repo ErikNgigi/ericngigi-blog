@@ -1,4 +1,4 @@
-baseurl = "/"
+# baseurl = "/"
 title = "Eric Ngigi"
 languageCode = "en-us"
 paginate = "10" # Number of posts per page
@@ -23,8 +23,6 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
   post_meta = ["date", "categories"] # Order of post meta information
   mainSections = ["post", "docs"]
   googleFontsLink = "https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700" # Load Google Fonts
-  customCSS = ["css/hugo-easy-gallery.css"] # Include custom CSS files
-  customJS = ["js/load-photoswipe.js"] # Include custom JS files
 
 [Params.logo]
   image = "images/logo/cloud-logo.png"
