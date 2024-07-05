@@ -1,4 +1,3 @@
-# baseurl = "/"
 title = "Eric Ngigi"
 languageCode = "en-us"
 paginate = "10" # Number of posts per page
@@ -23,6 +22,8 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
   post_meta = ["date", "categories"] # Order of post meta information
   mainSections = ["post", "docs"]
   googleFontsLink = "https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700" # Load Google Fonts
+  customCSS = ["css/img-gallery.css"] # Include custom CSS files
+  customJS = ["js/glightbox.js"] # Include custom JS files
 
 [Params.logo]
   image = "images/logo/cloud-logo.png"
@@ -42,7 +43,7 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
   tags_counter = false # Enable counter for each tag in "Tags" widget
 
 [Params.style.vars]
-  highlightColor = "#E22D30"
+  highlightColor = "#03C03C"
   fontFamilyPrimary = "'Nunito Sans', Helvetica, Arial, sans-serif"
   fontFamilySecondary = "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
 
@@ -55,7 +56,7 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
   avatar = "img/profile-picture.png"
 
 [Params.widgets.social]
-  cached = false # activate cache if true
+  cached = true # activate cache if true
   # Enable parts of social widget
   linkedin = "erik-ngigi"
   github = "ErikNgigi"

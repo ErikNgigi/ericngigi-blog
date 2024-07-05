@@ -34,7 +34,7 @@
 	{{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
 	{{- end }}
 
-	<link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}">
+	<link rel="shortcut icon" href="{{ "favicon/favicon.ico" | relURL }}">
 	{{- if not hugo.IsServer }}
 		{{ template "_internal/google_analytics.html" . }}
 	{{- end }}
