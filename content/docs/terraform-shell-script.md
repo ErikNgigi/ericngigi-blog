@@ -18,6 +18,8 @@ tags:
     - Shell Scripting
 ---
 
+{{< glightbox src="/images/articles/aws-vpc-best-practices-1.svg" >}}
+
 ## How does the Automation Shell Script simplify starting a Terraform project?
 
 Starting a Terraform project can be a daunting task, especially for those new to infrastructure as code (IaC) or those embarking on complex projects. The Shell Script serves as a guiding light in this process, offering several key benefits that simplify the initial setup:
@@ -46,11 +48,11 @@ Structuring Terraform project files effectively is crucial for maintaining a sca
 
 ## Can you provide examples of how the script streamlines Terraform setup and ensures project stability?
 
-Absolutely! Let's delve into how the Shell Script revolutionizes Terraform setup and enhances project stability with a image and video demonstration:
+<!-- Absolutely! Let's delve into how the Shell Script revolutionizes Terraform setup and enhances project stability with a image and video demonstration: -->
 
-### Video Demonstration:
+<!-- ### Video Demonstration: -->
 
-{{< youtube o-m9IG4_7E8 >}}
+<!-- {{< youtube o-m9IG4_7E8 >}} -->
 
 ### Image Demonstration:
 
@@ -133,4 +135,3 @@ The Shell Script addresses various challenges encountered when structuring Terra
 
 4. **Gitignore Initialization**: Version control is paramount in software development, but managing which files to include or exclude can be intricate. The script simplifies this aspect by generating a `.gitignore` file tailored for Terraform projects. This file excludes sensitive or unnecessary files from version control, enhancing project security and maintainability.
 
-{{< glightbox src="/images/articles/aws-vpc-best-practices-1.svg" >}}

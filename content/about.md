@@ -12,6 +12,9 @@ I am also skilled in various programming languages, including Python, Go, JAMsta
 
 If you're looking for a Linux expert who is passionate about free software and has the technical skills to make a real difference in your organization, then look no further. Let's work together to build the perfect solution for your needs. This blog is mostly about my software development/DevOps adventures. You can find here various how-tos, tutorials, and write-ups about my personal project experiences.
 
+## Resume
+[Click to View My Resume](https://drive.google.com/file/d/1XdGdTidgEGvLOAYDuwqRbRwxs7dW19YP/view?usp=sharing)
+
 ## Get in Touch
 
 Connect with me! Stay up-to-date with what I’m sharing and working on:
